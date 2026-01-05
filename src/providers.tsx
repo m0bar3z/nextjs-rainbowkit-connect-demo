@@ -10,7 +10,7 @@ import { WagmiProvider } from "wagmi";
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { arbitrum, base, mainnet, optimism, polygon, sepolia } from "wagmi/chains";
 
-import { baseAccount, injectedWallet, rainbowWallet, walletConnectWallet } from "@rainbow-me/rainbowkit/wallets";
+import { injectedWallet, walletConnectWallet } from "@rainbow-me/rainbowkit/wallets";
 
 export const config = getDefaultConfig({
   appName: "My RainbowKit App",
@@ -19,7 +19,7 @@ export const config = getDefaultConfig({
   wallets: [
     {
       groupName: "Recommended",
-      wallets: [injectedWallet, rainbowWallet, walletConnectWallet, baseAccount],
+      wallets: [injectedWallet, walletConnectWallet],
     },
   ],
   ssr: true,
