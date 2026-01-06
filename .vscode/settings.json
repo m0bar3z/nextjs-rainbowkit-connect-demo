@@ -27,7 +27,5 @@
     "strings": true
   },
 
-  "tailwindCSS.experimental.configFile": "src/styles/globals.css",
-
   "cSpell.words": ["autodocs", "clsx", "nextjs"]
 }
