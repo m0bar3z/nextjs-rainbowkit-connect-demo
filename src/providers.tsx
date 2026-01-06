@@ -16,6 +16,7 @@ export const config = getDefaultConfig({
   appName: "My RainbowKit App",
   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "",
   chains: [mainnet, sepolia, polygon, optimism, arbitrum, base],
+  appUrl: process.env.NEXT_PUBLIC_APP_URL || "",
   wallets: [
     {
       groupName: "Recommended",
