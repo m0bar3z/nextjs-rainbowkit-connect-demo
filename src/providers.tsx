@@ -13,10 +13,22 @@ import { arbitrum, base, mainnet, optimism, polygon, sepolia } from "wagmi/chain
 import { injectedWallet, walletConnectWallet } from "@rainbow-me/rainbowkit/wallets";
 
 export const config = getDefaultConfig({
-  appName: "My RainbowKit App",
+  appName: "Wallet Details Demo App",
   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "",
   chains: [mainnet, sepolia, polygon, optimism, arbitrum, base],
   appUrl: process.env.NEXT_PUBLIC_APP_URL || "",
+  walletConnectParameters: {
+    metadata: {
+      name: "Wallet Details Demo App",
+      description: "Connect to my cool dapp",
+      url: process.env.NEXT_PUBLIC_APP_URL || "",
+      icons: [`${process.env.NEXT_PUBLIC_APP_URL}/favicon.ico`],
+      redirect: {
+        universal: process.env.NEXT_PUBLIC_APP_URL,
+        native: process.env.NEXT_PUBLIC_APP_URL,
+      },
+    },
+  },
   wallets: [
     {
       groupName: "Recommended",
