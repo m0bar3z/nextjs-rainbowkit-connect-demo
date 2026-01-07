@@ -9,34 +9,40 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen items-center justify-center p-4">
-      <div className="flex w-full max-w-md flex-col items-center justify-center gap-8">
-        <div className="mb-4 space-y-2 text-center">
-          <h1 className="text-3xl font-semibold">Web3 Wallet</h1>
-          <p className="text-sm text-gray-500 dark:text-gray-400">Connect your wallet to get started</p>
-        </div>
+      <div className="card w-full max-w-md bg-base-100 shadow-xl">
+        <div className="card-body items-center text-center gap-6">
+          <h1 className="card-title text-3xl">Web3 Wallet</h1>
+          <p className="text-base-content/60">Connect your wallet to get started</p>
 
-        {!isConnecting && !isReconnecting ? <ConnectButton /> : null}
+          <div className="w-full flex justify-center">
+            {!isConnecting && !isReconnecting ? <ConnectButton /> : null}
+          </div>
 
-        {isConnecting && <div className="animate-pulse">Connecting...</div>}
-
-        {isReconnecting && <div className="animate-pulse">Reconnecting...</div>}
-
-        <div className="flex gap-4">
-          {status === "connected" && (
-            <Link
-              href="/details"
-              className="cursor-pointer rounded-lg bg-gray-900 px-6 py-3 font-medium text-white transition-opacity hover:opacity-90 dark:bg-gray-100 dark:text-gray-900"
-            >
-              View Wallet Details
-            </Link>
+          {isConnecting && (
+            <div className="alert alert-info">
+              <span className="loading loading-spinner loading-sm"></span>
+              <span>Connecting...</span>
+            </div>
           )}
 
-          <Link
-            href="/send"
-            className="cursor-pointer rounded-lg bg-gray-900 px-6 py-3 font-medium text-white transition-opacity hover:opacity-90 dark:bg-blue-400 dark:text-gray-100"
-          >
-            Send Transaction
-          </Link>
+          {isReconnecting && (
+            <div className="alert alert-info">
+              <span className="loading loading-spinner loading-sm"></span>
+              <span>Reconnecting...</span>
+            </div>
+          )}
+
+          <div className="card-actions justify-center gap-3 w-full flex-col sm:flex-row">
+            {status === "connected" && (
+              <Link href="/details" className="btn btn-primary w-full sm:w-auto cursor-pointer">
+                Wallet Details
+              </Link>
+            )}
+
+            <Link href="/send" className="btn btn-outline w-full sm:w-auto cursor-pointer">
+              Send Transaction
+            </Link>
+          </div>
         </div>
       </div>
     </main>

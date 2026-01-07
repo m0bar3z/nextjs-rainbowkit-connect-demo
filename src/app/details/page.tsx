@@ -13,78 +13,70 @@ export default function DetailsPage() {
   return (
     <main className="flex min-h-screen flex-col p-4 md:p-8">
       <div className="mx-auto w-full max-w-2xl space-y-6">
-        {/* Header */}
-        <div className="mb-8 flex items-center justify-between">
-          <Link
-            href="/"
-            className="cursor-pointer px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-          >
+        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <Link href="/" className="btn btn-ghost btn-sm cursor-pointer">
             ← Back
           </Link>
+
           <ConnectButton />
         </div>
 
-        {/* Content */}
-        <div className="space-y-4">
-          <h1 className="mb-6 text-2xl font-semibold md:text-3xl">Wallet Details</h1>
+        <div className="card bg-base-100 shadow-xl">
+          <div className="card-body">
+            <h2 className="card-title mb-4 text-2xl">Wallet Details</h2>
 
-          {status === "connected" ? (
-            <div className="space-y-4">
-              {/* Connection Status */}
-              <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
-                <div className="mb-1 text-sm text-gray-500 dark:text-gray-400">Connection Status</div>
-                <div className="text-base font-medium capitalize">{status}</div>
+            {status === "connected" ? (
+              <div className="space-y-4">
+                <div className="stat bg-base-200 rounded-lg">
+                  <div className="stat-title">Connection Status</div>
+                  <div className="stat-value text-lg capitalize">{status}</div>
+                </div>
+
+                {address && (
+                  <div className="stat bg-base-200 rounded-lg">
+                    <div className="stat-title">Wallet Address</div>
+                    <div className="stat-value font-mono text-sm break-all">{address}</div>
+                  </div>
+                )}
+
+                {balance && (
+                  <div className="stat bg-base-200 rounded-lg">
+                    <div className="stat-title">Balance</div>
+                    <div className="stat-value text-lg">
+                      {formatEther(balance.value)} {balance.symbol}
+                    </div>
+                  </div>
+                )}
+
+                {chainId && (
+                  <div className="stat bg-base-200 rounded-lg">
+                    <div className="stat-title">Chain ID</div>
+                    <div className="stat-value text-lg">{chainId}</div>
+                  </div>
+                )}
+
+                {chain && (
+                  <div className="stat bg-base-200 rounded-lg">
+                    <div className="stat-title">Network</div>
+                    <div className="stat-value text-lg">{chain.name}</div>
+                  </div>
+                )}
+
+                {gasPrice && (
+                  <div className="stat bg-base-200 rounded-lg">
+                    <div className="stat-title">Gas Price</div>
+                    <div className="stat-value text-lg">
+                      {formatEther(gasPrice)} {chain?.nativeCurrency?.symbol || "ETH"}
+                    </div>
+                  </div>
+                )}
               </div>
-
-              {/* Address */}
-              {address && (
-                <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
-                  <div className="mb-1 text-sm text-gray-500 dark:text-gray-400">Wallet Address</div>
-                  <div className="font-mono text-base break-all">{address}</div>
-                </div>
-              )}
-
-              {/* Balance */}
-              {balance && (
-                <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
-                  <div className="mb-1 text-sm text-gray-500 dark:text-gray-400">Balance</div>
-                  <div className="text-base font-medium">
-                    {formatEther(balance.value)} {balance.symbol}
-                  </div>
-                </div>
-              )}
-
-              {/* Chain ID */}
-              {chainId && (
-                <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
-                  <div className="mb-1 text-sm text-gray-500 dark:text-gray-400">Chain ID</div>
-                  <div className="text-base font-medium">{chainId}</div>
-                </div>
-              )}
-
-              {/* Chain Name */}
-              {chain && (
-                <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
-                  <div className="mb-1 text-sm text-gray-500 dark:text-gray-400">Network</div>
-                  <div className="text-base font-medium">{chain.name}</div>
-                </div>
-              )}
-
-              {/* Gas Price */}
-              {gasPrice && (
-                <div className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
-                  <div className="mb-1 text-sm text-gray-500 dark:text-gray-400">Gas Price</div>
-                  <div className="text-base font-medium">
-                    {formatEther(gasPrice)} {chain?.nativeCurrency?.symbol || "ETH"}
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="rounded-lg border border-gray-200 bg-white p-8 text-center dark:border-gray-800 dark:bg-gray-900">
-              <p className="text-gray-500 dark:text-gray-400">Please connect your wallet to view details</p>
-            </div>
-          )}
+            ) : (
+              <div className="alert alert-warning">
+                <span>Please connect your wallet to view details</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </main>
