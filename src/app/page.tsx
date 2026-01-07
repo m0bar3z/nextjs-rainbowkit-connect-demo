@@ -21,14 +21,23 @@ export default function Home() {
 
         {isReconnecting && <div className="animate-pulse">Reconnecting...</div>}
 
-        {status === "connected" && (
+        <div className="flex gap-4">
+          {status === "connected" && (
+            <Link
+              href="/details"
+              className="cursor-pointer rounded-lg bg-gray-900 px-6 py-3 font-medium text-white transition-opacity hover:opacity-90 dark:bg-gray-100 dark:text-gray-900"
+            >
+              View Wallet Details
+            </Link>
+          )}
+
           <Link
-            href="/details"
-            className="cursor-pointer rounded-lg bg-gray-900 px-6 py-3 font-medium text-white transition-opacity hover:opacity-90 dark:bg-gray-100 dark:text-gray-900"
+            href="/send"
+            className="cursor-pointer rounded-lg bg-gray-900 px-6 py-3 font-medium text-white transition-opacity hover:opacity-90 dark:bg-blue-400 dark:text-gray-100"
           >
-            View Wallet Details
+            Send Transaction
           </Link>
-        )}
+        </div>
       </div>
     </main>
   );
