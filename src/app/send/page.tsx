@@ -2,11 +2,12 @@
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
-import { parseEther } from "viem";
-import { useConnection, useSendTransaction, useWaitForTransactionReceipt, type BaseError } from "wagmi";
+import { formatEther, parseEther } from "viem";
+import { useBalance, useConnection, useSendTransaction, useWaitForTransactionReceipt, type BaseError } from "wagmi";
 
 function Page() {
-  const { isConnected } = useConnection();
+  const { isConnected, address } = useConnection();
+  const { data: balance } = useBalance({ address });
   const { data: hash, isPending, sendTransaction, error } = useSendTransaction();
 
   const { isLoading: isConfirming, isSuccess: isConfirmed } = useWaitForTransactionReceipt({
@@ -32,10 +33,13 @@ function Page() {
           <Link href="/" className="btn btn-ghost btn-sm mb-4 cursor-pointer">
             ← Back
           </Link>
+
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body items-center text-center">
               <h2 className="card-title">Wallet Not Connected</h2>
+
               <p>Please connect your wallet first to send transactions</p>
+
               <div className="card-actions mt-4 justify-center">
                 <ConnectButton />
               </div>
@@ -56,6 +60,15 @@ function Page() {
         <div className="card bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title mb-4 text-2xl">Send Transaction</h2>
+
+            {balance && (
+              <div className="stat bg-base-200 rounded-lg mb-4">
+                <div className="stat-title">Wallet Balance</div>
+                <div className="stat-value text-lg">
+                  {formatEther(balance.value)} {balance.symbol}
+                </div>
+              </div>
+            )}
 
             <form onSubmit={submit} className="space-y-4">
               <div className="form-control w-full">
