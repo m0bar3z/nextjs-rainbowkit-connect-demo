@@ -35,7 +35,7 @@ export default function DetailsPage() {
                 {address && (
                   <div className="stat bg-base-200 rounded-lg">
                     <div className="stat-title">Wallet Address</div>
-                    <div className="stat-value font-mono text-sm break-all">{address}</div>
+                    <div className="stat-value font-mono text-sm text-wrap break-all">{address}</div>
                   </div>
                 )}
 
