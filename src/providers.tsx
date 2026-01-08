@@ -8,14 +8,14 @@ import { type ReactNode } from "react";
 import { WagmiProvider } from "wagmi";
 
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { arbitrum, base, mainnet, optimism, polygon, sepolia } from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 
 import { injectedWallet, walletConnectWallet } from "@rainbow-me/rainbowkit/wallets";
 
 export const config = getDefaultConfig({
   appName: "Wallet Details Demo App",
   projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "",
-  chains: [mainnet, sepolia, polygon, optimism, arbitrum, base],
+  chains: [sepolia],
   appUrl: process.env.NEXT_PUBLIC_APP_URL || "",
   walletConnectParameters: {
     metadata: {
