@@ -9,12 +9,12 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen items-center justify-center p-4">
-      <div className="card w-full max-w-md bg-base-100 shadow-xl">
-        <div className="card-body items-center text-center gap-6">
+      <div className="card bg-base-100 w-full max-w-md shadow-xl">
+        <div className="card-body items-center gap-6 text-center">
           <h1 className="card-title text-3xl">Web3 Wallet</h1>
           <p className="text-base-content/60">Connect your wallet to get started</p>
 
-          <div className="w-full flex justify-center">
+          <div className="flex w-full justify-center">
             {!isConnecting && !isReconnecting ? <ConnectButton /> : null}
           </div>
 
@@ -32,16 +32,18 @@ export default function Home() {
             </div>
           )}
 
-          <div className="card-actions justify-center gap-3 w-full flex-col sm:flex-row">
+          <div className="card-actions w-full flex-col justify-center gap-3 sm:flex-row">
             {status === "connected" && (
-              <Link href="/details" className="btn btn-primary w-full sm:w-auto cursor-pointer">
-                Wallet Details
-              </Link>
-            )}
+              <>
+                <Link href="/details" className="btn btn-primary w-full cursor-pointer sm:w-auto">
+                  Wallet Details
+                </Link>
 
-            <Link href="/send" className="btn btn-outline w-full sm:w-auto cursor-pointer">
-              Send Transaction
-            </Link>
+                <Link href="/send" className="btn btn-outline w-full cursor-pointer sm:w-auto">
+                  Send Transaction
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
