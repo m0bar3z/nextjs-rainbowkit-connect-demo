@@ -14,7 +14,7 @@ export default function DetailsPage() {
     <main className="flex min-h-screen flex-col p-4 md:p-8">
       <div className="mx-auto w-full max-w-2xl space-y-6">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-          <Link href="/" className="btn btn-ghost btn-sm cursor-pointer">
+          <Link href="/" className="btn btn-ghost z-10">
             ← Back
           </Link>
 

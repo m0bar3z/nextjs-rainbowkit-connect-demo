@@ -30,9 +30,14 @@ function Page() {
     return (
       <main className="flex min-h-screen flex-col p-4 md:p-8">
         <div className="mx-auto w-full max-w-2xl">
-          <Link href="/" className="btn btn-ghost btn-sm mb-4 cursor-pointer">
+          <Link
+            href="/"
+            className="btn btn-ghost btn-sm text-base-content mb-4 cursor-pointer opacity-100 hover:opacity-80"
+          >
             ← Back
           </Link>
+
+          <ConnectButton />
 
           <div className="card bg-base-100 shadow-xl">
             <div className="card-body items-center text-center">
@@ -53,16 +58,19 @@ function Page() {
   return (
     <main className="flex min-h-screen flex-col p-4 md:p-8">
       <div className="mx-auto w-full max-w-2xl space-y-6">
-        <Link href="/" className="btn btn-ghost btn-sm cursor-pointer">
-          ← Back
-        </Link>
+        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+          <Link href="/" className="btn btn-ghost z-10">
+            ← Back
+          </Link>
 
+          <ConnectButton />
+        </div>
         <div className="card bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title mb-4 text-2xl">Send Transaction</h2>
 
             {balance && (
-              <div className="stat bg-base-200 rounded-lg mb-4">
+              <div className="stat bg-base-200 mb-4 rounded-lg">
                 <div className="stat-title">Wallet Balance</div>
                 <div className="stat-value text-lg">
                   {formatEther(balance.value)} {balance.symbol}
